@@ -1,22 +1,23 @@
-
-
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">Dating Application</a>
-    <ul class="navbar-nav me-auto " *ngIf="accountService.currentUser$| async">
-      <li class="nav-item">
-        <a class="nav-link " href="#">Matches</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Messages</a>
-      </li>
+    <a class="navbar-brand mt-20 pt-4"  routerLink='/' routerLinkActive='active'> Dating Application</a>
+    <ul class="navbar-nav me-auto">
+      <ng-container *ngIf="accountService.currentUser$| async"> 
+        <li class="nav-item">
+          <a class="nav-link " routerLink='/members' routerLinkActive='active'> Matches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/lists' routerLinkActive='active'>List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/messages' routerLinkActive='active'>Messages</a>
+        </li>
+      </ng-container>
+      
     </ul>
     
-    <div class="dropdown" *ngIf="accountService.currentUser$| async">
-      <button class="dropbtn">Welcome user</button>
+    <div class="dropdown" *ngIf="(accountService.currentUser$| async) as user" >
+      <button class="dropbtn">{{user.username}}</button> 
       <div class="dropdown-content"  mt-3>
         <a class="dropdown-item">Edit Profile</a>
         <div class="divider dropdown-divider"></div>
